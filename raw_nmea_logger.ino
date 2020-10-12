@@ -110,7 +110,7 @@ void show_global_status() {
 void gen_filename(char* new_filename)
 {
     File lastnum_file;
-    char new_filenum[FILENUM_LEN];
+    char new_filenum[FILENUM_LEN+1];
 
     lastnum_file = SD.open(LASTNUM_FILE, FILE_READ);
     if (!lastnum_file) {
@@ -120,6 +120,7 @@ void gen_filename(char* new_filename)
 
     lastnum_file.seek(0);
     lastnum_file.read(new_filenum, FILENUM_LEN);
+    new_filenum[FILENUM_LEN] = '\0';
     for (int i = 0; i < FILENUM_LEN; i++) {
         if (!isDigit(new_filenum[i])) {
             strcpy(new_filenum, DEFAULT_NUM);
