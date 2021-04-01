@@ -142,7 +142,7 @@ void gen_filename(char* new_filename)
     }
 
 save_filenum:
-    lastnum_file = SD.open(LASTNUM_FILE, FILE_WRITE);
+    lastnum_file = SD.open(LASTNUM_FILE, O_CREAT | O_WRITE);
     lastnum_file.seek(0);
     lastnum_file.print(new_filenum);
     lastnum_file.close();
